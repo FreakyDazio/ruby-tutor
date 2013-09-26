@@ -1,16 +1,13 @@
 module RubyTutor
   class Application < ::Sinatra::Application
 
-    post "/" do
-      excercise = RubyTutor::Exercise.new
-      excercise.criteria do |output|
-        assert_equal "Hello World", output
+    RubyTutor::Exercises.list.each do |exercise|
+      get "/#{exercise.key}" do
+        "Hello"
       end
 
-      if excercise.attempt(params[:code].to_s)
-        "CONGRATS"
-      else
-        "BAD LUCK"
+      post "/#{exercise.key}" do
+        exercise.attempt(params[:code]) ? "PASS" : "FAIL"
       end
     end
 

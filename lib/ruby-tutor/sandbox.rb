@@ -12,23 +12,7 @@ module RubyTutor
     end
 
     def execute(code)
-      previous_stdin  = $stdin
-      previous_stdout = $stdout
-      previous_stderr = $stderr
-      $stdin  = @std_in
-      $stdout = @std_out
-      $stderr = @std_err
       @sandbox.run(code: code, privileges: @privileges, timeout: 1)
-      @std_in.rewind
-      @std_out.rewind
-      @std_err.rewind
-      $stdin  = previous_stdin
-      $stdout = previous_stdout
-      $stderr = previous_stderr
-    end
-
-    def output
-      @std_out.read.to_s.strip
     end
 
     private
