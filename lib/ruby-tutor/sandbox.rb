@@ -1,5 +1,6 @@
 module RubyTutor
   class Sandbox
+
     def self.generate
       privs = ::Shikashi::Privileges.new
       [Hash, Array, String, Fixnum, Float, Range].each do |klass|
@@ -39,5 +40,6 @@ module RubyTutor
       @sandbox = ::Shikashi::Sandbox.new
       @privileges = privileges
     end
+
   end
 end
