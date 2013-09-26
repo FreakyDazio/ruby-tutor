@@ -28,7 +28,7 @@ module RubyTutor
     end
 
     def output
-      @std_out.read
+      @std_out.read.to_s.strip
     end
 
     private
